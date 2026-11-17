@@ -1,0 +1,45 @@
+[project]
+name = "enterprise-rag-backend"
+version = "0.1.0"
+description = "Backend for the Enterprise RAG Document Intelligence platform"
+requires-python = ">=3.11"
+dependencies = [
+  "alembic>=1.13,<2",
+  "celery[redis]>=5.4,<6",
+  "fastapi>=0.115,<1",
+  "pydantic-settings>=2.6,<3",
+  "psycopg[binary]>=3.2,<4",
+  "pypdf>=5.1,<6",
+  "python-multipart>=0.0.17,<1",
+  "sqlalchemy[asyncio]>=2.0.36,<3",
+  "python-docx>=1.1,<2",
+  "openpyxl>=3.1,<4",
+  "pgvector>=0.3,<1",
+  "uvicorn[standard]>=0.32,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx>=0.28,<1",
+  "pytest>=8.3,<9",
+  "pytest-asyncio>=0.24,<1",
+  "ruff>=0.8,<1",
+]
+ai = [
+  "groq>=0.13,<1",
+  "sentence-transformers>=3.3,<4",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+extend-ignore = ["B008"]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
